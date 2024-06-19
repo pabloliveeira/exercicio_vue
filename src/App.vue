@@ -2,8 +2,8 @@
 import { reactive } from 'vue';
 
   const estado = reactive({
-    numero1: document.getElementById("numero-1"),
-    numero2: document.getElementById("numero-2"),
+    numero1: 0,
+    numero2: 0,
     operacoes: [
       {
         titulo: 'somar',
@@ -21,19 +21,19 @@ import { reactive } from 'vue';
   })
 
   const divide = () => {
-    return numero1.value / numero2.value
+    return numero1 / numero2
   }
 
   const multiplica = () => {
-    return numero1.value * numero2.value
+    return numero1 * numero2
   }
 
   const subtrai = () => {
-    return numero1.value - numero2.value
+    return numero1 - numero2
   }
 
   const soma = () => {
-    return numero1.value + numero2.value
+    return numero1 + numero2
   }
   
   const resultado = () => {
@@ -77,7 +77,9 @@ import { reactive } from 'vue';
             <option value="dividir">Dividir</option>
           </select>
         </div>
-        <span class="mt-5 fs-2">RESULTADO: {{ resultado() }}</span>
+        <div class="col-2">
+          <span>{{ resultado() }}</span>
+        </div>
       </div>
     </form>
   </div>
