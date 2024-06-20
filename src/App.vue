@@ -2,6 +2,7 @@
 import { reactive } from 'vue';
 
   const estado = reactive({
+    filtro: '',
     numero1: 0,
     numero2: 0,
     operacoes: [
@@ -21,19 +22,19 @@ import { reactive } from 'vue';
   })
 
   const divide = () => {
-    return numero1 / numero2
+    return estado.numero1 / estado.numero2
   }
 
   const multiplica = () => {
-    return numero1 * numero2
+    return estado.numero1 * estado.numero2
   }
 
   const subtrai = () => {
-    return numero1 - numero2
+    return estado.numero1 - estado.numero2
   }
 
   const soma = () => {
-    return numero1 + numero2
+    return estado.numero1 + estado.numero2
   }
   
   const resultado = () => {
@@ -49,7 +50,6 @@ import { reactive } from 'vue';
       case 'dividir':
         return divide();
     }
-    
   }
 
 
@@ -70,7 +70,7 @@ import { reactive } from 'vue';
           <input @change="evento => estado.numero2 = evento.target.value" id="numero-2" class="form-control" type="number" min="0">
         </div>
         <div class="col-md-2">
-          <select @change="evento => estado.operacoes = evento.target.value" class="form-control">
+          <select @change="evento => estado.filtro = evento.target.value" class="form-control">
             <option value="somar">Somar</option>
             <option value="subtrair">Subtrair</option>
             <option value="multiplicar">Multiplicar</option>
@@ -78,7 +78,7 @@ import { reactive } from 'vue';
           </select>
         </div>
         <div class="col-2">
-          <span>{{ resultado() }}</span>
+          <span>RESULTADO: {{ resultado() }}</span>
         </div>
       </div>
     </form>
