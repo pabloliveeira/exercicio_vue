@@ -1,8 +1,10 @@
 <script setup>
-import { reactive } from 'vue';
+  import { reactive } from 'vue';
+  import Cabecalho from './components/Cabecalho.vue';
+  import Formulario from './components/Formulario.vue';
 
   const estado = reactive({
-    filtro: '',
+    filtro: 'somar',
     numero1: 0,
     numero2: 0,
     operacoes: [
@@ -58,30 +60,8 @@ import { reactive } from 'vue';
 
 <template>
   <div class="container">
-    <header class="p-5 mb-2 mt-4">
-      <h1>Calculadora Aritmética</h1>
-    </header>
-    <form prevent>
-      <div class="row">
-        <div class="col-1">
-          <input @change="evento => estado.numero1 = evento.target.value" id="numero-1" class="form-control" type="number" min="0">
-        </div>
-        <div class="col-1">
-          <input @change="evento => estado.numero2 = evento.target.value" id="numero-2" class="form-control" type="number" min="0">
-        </div>
-        <div class="col-md-2">
-          <select @change="evento => estado.filtro = evento.target.value" class="form-control">
-            <option value="somar">Somar</option>
-            <option value="subtrair">Subtrair</option>
-            <option value="multiplicar">Multiplicar</option>
-            <option value="dividir">Dividir</option>
-          </select>
-        </div>
-        <div class="col-2">
-          <span>RESULTADO: {{ resultado() }}</span>
-        </div>
-      </div>
-    </form>
+    <Cabecalho/>
+    <Formulario :resultado="resultado()" :operador1="evento => estado.numero1 = parseFloat(evento.target.value)" :operador2="evento => estado.numero2 = parseFloat(evento.target.value)" :filtro-tarefa="evento => estado.filtro = evento.target.value" />
   </div>
 </template>
 
